@@ -25,7 +25,7 @@ def query_tick(date,from_station,to_station,skype_instance):
     except:
         print 'network run into problem..........................'
         return
-    response=urllib2.urlopen(url,timeout=1)
+    response=urllib2.urlopen(url)
     html=response.read()
     
     pattern_train_number=re.compile('station_train_code":".{2,5}"')
@@ -75,6 +75,6 @@ if __name__=='__main__':
     songqi=skype()
     while True:
     
-        query_tick('2015-10-01','BJP','JVK',songqi)
+        query_tick('2015-10-09','BJP','JVK',songqi)
         query_tick('2015-10-01','BJP','QDK',songqi)
         time.sleep(0.5)
