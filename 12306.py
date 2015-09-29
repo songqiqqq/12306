@@ -39,7 +39,7 @@ def query_tick(date,from_station,to_station,skype_instance):
     tick_number=pattern_tick_number.findall(html)
     
     for i in range(len(train_number)) :
-        if train_number[i]==',' :
+        if train_number[i]==',' or train_number[i]=='D4059':
             continue
         
         print date,train_number[i],start_time[i],tick_number[i],time.strftime("%H:%M:%S")
@@ -73,7 +73,7 @@ if __name__=='__main__':
 
     songqi=skype()
     while True:
-    
+
         query_tick('2015-10-01','BJP','JVK',songqi)
         query_tick('2015-10-01','BJP','QDK',songqi)
         time.sleep(0.5)
