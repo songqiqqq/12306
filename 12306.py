@@ -20,11 +20,12 @@ sys.setdefaultencoding('utf-8')
 def query_tick(date,from_station,to_station,skype_instance):
     url='https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date='+date+'&leftTicketDTO.from_station='+from_station+'&leftTicketDTO.to_station='+to_station+'&purpose_codes=ADULT'   
     try:
-        response=urllib2.urlopen(url)
+        response=urllib2.urlopen(url,timeout=1)
+        html=response.read()
     except:
         print 'network run into problem..........................'
         return
-    html=response.read()
+    
     
     pattern_train_number=re.compile('station_train_code":".{2,5}"')
     train_number=pattern_train_number.findall(html)
@@ -73,6 +74,6 @@ if __name__=='__main__':
     songqi=skype()
     while True:
     
-        query_tick('2015-10-09','BJP','JVK',songqi)
+        query_tick('2015-10-01','BJP','JVK',songqi)
         query_tick('2015-10-01','BJP','QDK',songqi)
         time.sleep(0.5)
